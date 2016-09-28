@@ -1,0 +1,14 @@
+body{
+  font-family: "ubuntu";
+  padding: 15px;
+  background-color: #c1c1c1;
+}
+body .title{
+  color: #e02c04;
+}
+.jumbotron{
+  padding: 2px;
+}
+.duo{
+  display: inline-flex;
+}
