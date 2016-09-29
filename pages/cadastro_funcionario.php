@@ -41,26 +41,26 @@
                 <label for="estado_civil">Estado Civil</label>
                 <select class="form-control" name="estado_civil">
                   <option value="não imformado">Selecione uma opção</option>
-                  <option value="Masculino">Casado</option>
-                  <option value="Feminino">Em um Relacionamento Sério</option>
-                  <option value="Outros">Solteiro</option>
+                  <option value="Casado">Casado</option>
+                  <option value="Em um Relacionamento Sério">Em um Relacionamento Sério</option>
+                  <option value="Solteiro">Solteiro</option>
                 </select>
                 <label for="nome_c">Nome do Conjuge</label>
                 <input type="text" name="nome_c" class="form-control" value="" placeholder="Nome do Conjuge (Caso haja)">
             </div>
             <div class="form-group col-md-4">
               <label for="telefone">Telefone</label>
-              <input type="text" name="telefone" class="form-control" value="" placeholder="Ex: (00) 0000-0000" required="">
-              <label for="celular">Celular</label>
+              <input type="tel" name="telefone" class="form-control" value="" placeholder="Ex: (00) 0000-0000" required="">
+              <label for="tel">Celular</label>
               <input type="text" name="celular" class="form-control" value="" placeholder="Ex: (00) 00000-0000">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" value="" placeholder="Ex: exemplo@exemplo.com">
               <label for="rg">RG</label>
               <input type="text" name="rg" class="form-control" value="" placeholder="Ex: AA00000000">
-              <label for="email">Email</label>
-              <input type="text" name="email" class="form-control" value="" placeholder="Ex: exemplo@exemplo.com">
               <label for="cpf">CPF</label>
               <input type="text" name="cpf" class="form-control" value="" placeholder="Ex: 000.000.000-00" required="">
               <label for="data_nasc">Data de Nascimento</label>
-              <input type="text" name="data_nasc" class="form-control" value="" placeholder="Ex: DD/MM/AAAA">
+              <input type="date" name="data_nasc" class="form-control" value="">
             </div>
             <div class="form-group col-md-4">
                 <label for="cargo">Cargo</label>
@@ -92,7 +92,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="cidade">Cidade</label>
-                    <input type="text" name="numero" class="form-control" value="" placeholder="Nome da Cidade" required="">
+                    <input type="text" name="cidade" class="form-control" value="" placeholder="Nome da Cidade" required="">
                   </div>
                 </div>
                 <br>
@@ -103,13 +103,13 @@
                   </div>
                   <div class="col-md-6">
                     <label for="estado">Estado</label>
-                    <select class="form-control" name="estados">
+                    <select class="form-control" name="estado">
                       <option value="">Selecione uma opção</option>
                       <?php
                         $sel = $conn->prepare('SELECT * FROM tb_estados');
                         $sel->execute();
                         while ($result = $sel->fetch(PDO::FETCH_ASSOC)) {?>
-                          <option value="<?php echo $result ['id']?>"><?php echo $result ['nome_estado']?></option>
+                          <option value="<?php echo $result ['nome_estado']?>"><?php echo $result ['nome_estado']?></option>
                         <?php }?>
                       ?>
                     </select>
