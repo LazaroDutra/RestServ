@@ -24,6 +24,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
+          <br><br>
+          <center><img src="img/logo.png" alt="" height="100px" style="margin-top:-10px"/></center>
+          <br><br><br>
         <div class="login-panel panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Entre com seu Usuario e Senha</h3>
@@ -46,8 +49,10 @@
                 </div>
 
                 <div class="text-center">
-                  <input type="reset" class="btn btn-danger" value="Limpar">
+                  
                   <input type="submit" class="btn btn-success" value="Login">
+                  <input type="reset" class="btn btn-danger" value="Limpar">
+
                 </div>
               </fieldset>
             </form>
@@ -56,7 +61,6 @@
       </div>
     </div>
   </div>
-  <center><img src="img/logo.png" alt="" height="100px" style="margin-top:-10px"/></center>
   </body>
 </html>
 
@@ -70,7 +74,9 @@
         $senha = $result ['senha'];
       }
       if($email == $_POST['email'] || $senha == $_POST['password'] ){
-        // Valido
+        session_start();
+        $_SESSION['user'] = $user;
+        header('Location: pages/');
       }else{
         echo "<script language='javascript'>
 				document.getElementById('off').style.display = 'block';
