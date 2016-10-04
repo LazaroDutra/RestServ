@@ -11,7 +11,7 @@ $conn = conectar();
   <title></title>
   <!--  Configuração do Bootstrap -->
   <link rel="stylesheet" href="../bootstrap-3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../bootstrap-3.3.6//css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.6/css/bootstrap-theme.min.css">
   <script src="../bootstrap-3.3.6/js/jquery1.11.3.js">></script>
   <script src="../bootstrap-3.3.6/js/bootstrap.min.js"></script>
   <!-- CSS -->
@@ -25,26 +25,33 @@ $conn = conectar();
 
       <div class="row">
         <div class="col-md-4 col-md-offset-4">
-          <h2 class="title">Cadastro de Pratos</h2>
+          <h2 class="title">Cadastro de Mesa</h2>
           </br>
+          <?php
+          $sel = $conn->prepare('SELECT max(id_mesa) as cod_mesa, max(numero_mesa) as num_mesa FROM tb_mesas;');
+          $sel->execute();
+          $cod_mesa = 1;
+          $num_mesa = 1;
+          while ($result = $sel->fetch(PDO::FETCH_ASSOC)) {
+            $cod_mesa += $result ['cod_mesa'];
+            $num_mesa += $result ['num_mesa'];
+          }
+          ?>
+          <form action="m_mesa.php" method="post">
 
-          <form action="m_prato.php" method="post">
+            <label>Código da mesa</label>
+            <input type="text" name="cod_mesa" class="form-control" value="<?php print $cod_mesa ?>" disabled/>
 
-            <label>Código do Prato</label>
-            <input type="text" name="nome" class="form-control" value="9999" placeholder="Código do Prato" disabled/>
+            <label>Número da mesa</label>
+            <input type="text" name="num_mesa" class="form-control" value="<?php print $num_mesa ?>" disabled/>
 
-            <label>Nome do Prato</label>
-            <input type="text" name="nome_m" class="form-control" value="" placeholder="Nome do Prato" required/>
-
-            <label>Descrição do Prato</label>
-            <textarea class="form-control" rows="3" placeholder="Descrição do Prato" required></textarea>
-
-            <label>Valor do Prato</label>
-            <div class="form-group input-group">
-              <span class="input-group-addon form-group input-group">$</span>
-              <input type="number" name="nome_c" class="form-control" value="" min="2" placeholder="R$ 0,0" required>
-            </div>
-
+            <label>Status Da Mesa</label>
+            <select class="form-control" name="status" required>
+              <option value="">Selecione o status</option>
+              <option value="Disponível">Disponível</option>
+              <option value="Ocupado">Ocupado</option>
+            </select>
+            </br>
             <div class="text-center">
             <a href="../index.php">
                 <button type="button" name="btn_cancelar" class="btn btn-danger">Cancelar</button>
