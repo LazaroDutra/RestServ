@@ -12,3 +12,11 @@ body .title{
 .duo{
   display: inline-flex;
 }
+
+#off{
+  display: none;
+}
+
+.ta{
+  white-space: nowrap;
+}

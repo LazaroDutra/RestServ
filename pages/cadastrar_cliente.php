@@ -40,16 +40,12 @@ $conn = conectar();
 <div class="row">
   <div class="container-fluid">
     <div class="jumbotron">
-      <h2 class="title">Cadastro de Funcionários</h2>
+      <h2 class="title">Cadastro de Clientes</h2>
       <div class="row">
         <div class="form-group col-md-4">
-          <form class="" action="CRUD_funcionario.php" method="post">
+          <form class="" action="CRUD_cliente.php" method="post">
             <label for="nome">Nome Completo</label>
-            <input type="text" name="nome" class="form-control" value="" placeholder="Nome do Funcionário" required="">
-            <label for="nome_m">Nome da Mãe</label>
-            <input type="text" name="nome_m" class="form-control" value="" placeholder="Nome da Mãe" required="">
-            <label for="nome_p">Nome do Pai</label>
-            <input type="text" name="nome_p" class="form-control" value="" placeholder="Nome do Pai" required="">
+            <input type="text" name="nome" class="form-control" value="" placeholder="Nome do Cliente" required="">
             <label for="sexo">Sexo</label>
             <select class="form-control" name="sexo">
               <option value="não imformado">Selecione uma opção</option>
@@ -57,21 +53,12 @@ $conn = conectar();
               <option value="Feminino">Feminino</option>
               <option value="Outros">Outros</option>
             </select>
-            <label for="estado_civil">Estado Civil</label>
-            <select class="form-control" name="estado_civil">
-              <option value="não imformado">Selecione uma opção</option>
-              <option value="Casado">Casado</option>
-              <option value="Em um Relacionamento Sério">Em um Relacionamento Sério</option>
-              <option value="Solteiro">Solteiro</option>
-            </select>
-            <label for="nome_c">Nome do Conjuge</label>
-            <input type="text" name="nome_c" class="form-control" value="" placeholder="Nome do Conjuge (Caso haja)">
+            <label for="telefone">Telefone</label>
+            <input type="tel" name="telefone" class="form-control" value="" placeholder="Ex: (00) 0000-0000" onkeyup="criaMascara(this, '(##) ####-####');" required="">
+            <label for="tel">Celular</label>
+            <input type="text" name="celular" class="form-control" value="" placeholder="Ex: (00) 00000-0000" onkeyup="criaMascara(this, '(##) #####-####');">
         </div>
         <div class="form-group col-md-4">
-          <label for="telefone">Telefone</label>
-          <input type="tel" name="telefone" class="form-control" value="" placeholder="Ex: (00) 0000-0000" onkeyup="criaMascara(this, '(##) ####-####');" required="">
-          <label for="tel">Celular</label>
-          <input type="text" name="celular" class="form-control" value="" placeholder="Ex: (00) 00000-0000" onkeyup="criaMascara(this, '(##) #####-####');">
           <label for="email">Email</label>
           <input type="email" name="email" class="form-control" value="" placeholder="Ex: exemplo@exemplo.com">
           <label for="rg">RG</label>
@@ -82,17 +69,6 @@ $conn = conectar();
           <input type="date" name="data_nasc" class="form-control" value="">
         </div>
         <div class="form-group col-md-4">
-          <label for="cargo">Cargo</label>
-          <select class="form-control" name="cargo" required="">
-            <option value="">Selecione uma opção</option>
-            <?php
-            $sel = $conn->prepare('SELECT * FROM tb_cargos');
-            $sel->execute();
-            while ($result = $sel->fetch(PDO::FETCH_ASSOC)) {?>
-              <option value="<?php echo $result ['id']?>"><?php echo $result ['nome_cargo']?></option>
-            <?php }?>
-            ?>
-          </select>
           <h2 style="color:#e02c04">Endereço</h2>
           <div class="duo">
             <div class="col-md-8">

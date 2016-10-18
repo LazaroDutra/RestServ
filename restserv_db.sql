@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 28-Set-2016 às 08:29
--- Versão do servidor: 10.1.10-MariaDB
--- PHP Version: 7.0.4
+-- Host: 127.0.0.1
+-- Generation Time: 17-Out-2016 às 18:53
+-- Versão do servidor: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_bebidas` (
   `id_bebida` int(11) NOT NULL,
-  `nome_bebida` int(11) NOT NULL,
+  `nome_bebida` varchar(11) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `fornecedor_bebida` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `data_entrada` date NOT NULL,
   `data_validade` date DEFAULT NULL,
@@ -74,6 +74,24 @@ CREATE TABLE `tb_clientes` (
   `emai_cliente` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Extraindo dados da tabela `tb_clientes`
+--
+
+INSERT INTO `tb_clientes` (`id_cliente`, `nome_cliente`, `sexo_cliente`, `rg_cliente`, `cpf_cliente`, `data_nasc`, `emai_cliente`) VALUES
+(1, 'Nome Completo', 'Outros', 'MG00000', '999.999.999-99', '2016-10-04', 'admin@restserv.com'),
+(2, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(3, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(4, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(5, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(6, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(7, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(8, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(9, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(10, 'Nome Completo', 'Masculino', 'MG00000', '111.111.111-11', '2016-09-29', 'marlon-20-12@hotmail.com'),
+(11, 'Joao', 'Masculino', '', '000.000.000-00', '2016-10-04', ''),
+(12, 'rui', 'Masculino', 'MG00000', '999.999.999-99', '2016-10-04', 'admin@restserv.com');
+
 -- --------------------------------------------------------
 
 --
@@ -88,53 +106,17 @@ CREATE TABLE `tb_endereco` (
   `cidade` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `CEP` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `estado` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `fk_cliente` int(11) NOT NULL,
+  `fk_cliente` int(11) DEFAULT NULL,
   `fk_funcionario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `tb_estados`
+-- Extraindo dados da tabela `tb_endereco`
 --
 
-CREATE TABLE `tb_estados` (
-  `id_estado` int(11) NOT NULL,
-  `nome_estado` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `tb_estados`
---
-
-INSERT INTO `tb_estados` (`id_estado`, `nome_estado`) VALUES
-(1, 'Acre (AC)'),
-(2, 'Alagoas (AL)'),
-(3, 'Amapá	(AP)'),
-(4, 'Amazonas (AM)'),
-(5, 'Bahia (BA)'),
-(6, 'Ceará	(CE)'),
-(7, 'Distrito Federal (DF)'),
-(8, 'Espírito Santo (ES)'),
-(9, 'Goiás	(GO)'),
-(10, 'Maranhão (MA)'),
-(11, 'Mato Grosso (MT)'),
-(12, 'Mato Grosso do Sul (MS)'),
-(13, 'Minas Gerais (MG)'),
-(14, 'Pará (PA)'),
-(15, 'Paraíba (PB)'),
-(16, 'Paraná (PR)'),
-(17, 'Pernambuco (PE)'),
-(18, 'Piauí (PI)'),
-(19, 'Rio de Janeiro (RJ)'),
-(20, 'Rio Grande do Norte (RN)'),
-(21, 'Rio Grande do Sul (RS)'),
-(22, 'Rondônia (RO)'),
-(23, 'Roraima (RR)'),
-(24, 'Santa Catarina (SC)'),
-(25, 'São Paulo (SP)'),
-(26, 'Sergipe (SE)'),
-(27, 'Tocantins (TO)');
+INSERT INTO `tb_endereco` (`id_endereco`, `rua`, `numero`, `bairro`, `cidade`, `CEP`, `estado`, `fk_cliente`, `fk_funcionario`) VALUES
+(0, ' Rua', 0, 'Bairro', 'Brasiléia', '39830-000', 'Acre', NULL, 903),
+(0, 'Rua', 123, 'Bairro', 'Cidade', '123', 'Estado', NULL, 904);
 
 -- --------------------------------------------------------
 
@@ -156,6 +138,14 @@ CREATE TABLE `tb_funcionarios` (
   `fk_cargo` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `tb_funcionarios`
+--
+
+INSERT INTO `tb_funcionarios` (`id`, `nome`, `data_nasc`, `rg`, `cpf`, `sexo`, `est_civil`, `nome_conj`, `nome_pai`, `nome_mae`, `fk_cargo`, `email`) VALUES
+(903, 'Marlon Santos', '2016-12-31', 'MG000000000', ' 123.456.789-00', 'Masculino', 'Casado', 'Nome do Conjuge', 'Nome do Pai', 'Nome da Mãe', 5, 'marlon-20-12@hotmail.com'),
+(904, 'Completo', '0123-12-12', 'RG', '123.123.123-12', 'Masculino', 'Casado', 'Conjuge', 'Pai', 'Mae', 4, 'email@email.com');
 
 -- --------------------------------------------------------
 
@@ -181,6 +171,13 @@ CREATE TABLE `tb_mesas` (
   `numero_mesa` int(11) NOT NULL,
   `status_mesa` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `tb_mesas`
+--
+
+INSERT INTO `tb_mesas` (`id_mesa`, `numero_mesa`, `status_mesa`) VALUES
+(5, 5, 'Disponível');
 
 -- --------------------------------------------------------
 
@@ -211,6 +208,17 @@ CREATE TABLE `tb_pratos` (
   `valor_prato` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Extraindo dados da tabela `tb_pratos`
+--
+
+INSERT INTO `tb_pratos` (`id_prato`, `nome_prato`, `desc_prato`, `valor_prato`) VALUES
+(1, 'Nome Prato 33', 'Descrição do Prato33', 933),
+(2, 'Nome Prato', 'Descrição do Prato', 11),
+(3, 'pizza', 'erererer', 12),
+(4, 'Prato', 'Desc', 5),
+(5, 'AAA', 'BBB', 111);
+
 -- --------------------------------------------------------
 
 --
@@ -219,11 +227,39 @@ CREATE TABLE `tb_pratos` (
 
 CREATE TABLE `tb_telefones` (
   `id_telefone` int(11) NOT NULL,
-  `fk_cliente` int(11) NOT NULL,
-  `fk_funcionario` int(11) NOT NULL,
+  `fk_cliente` int(11) DEFAULT NULL,
+  `fk_funcionario` int(11) DEFAULT NULL,
   `telefone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tipo_telefone` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `tb_telefones`
+--
+
+INSERT INTO `tb_telefones` (`id_telefone`, `fk_cliente`, `fk_funcionario`, `telefone`, `tipo_telefone`) VALUES
+(3, NULL, 903, '(00) 0000-0000', '(11) 11111-1111'),
+(4, NULL, 904, '(12) 3123-123', '(12) 31231-2312');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_user`
+--
+
+CREATE TABLE `tb_user` (
+  `Id` int(11) NOT NULL,
+  `usuario` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `senha` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tb_user`
+--
+
+INSERT INTO `tb_user` (`Id`, `usuario`, `email`, `senha`) VALUES
+(1, 'admin', 'admin@restser,com', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -257,12 +293,6 @@ ALTER TABLE `tb_endereco`
   ADD KEY `fk_cliente` (`fk_cliente`);
 
 --
--- Indexes for table `tb_estados`
---
-ALTER TABLE `tb_estados`
-  ADD PRIMARY KEY (`id_estado`);
-
---
 -- Indexes for table `tb_funcionarios`
 --
 ALTER TABLE `tb_funcionarios`
@@ -283,6 +313,7 @@ ALTER TABLE `tb_itens`
 --
 ALTER TABLE `tb_mesas`
   ADD PRIMARY KEY (`id_mesa`),
+  ADD UNIQUE KEY `numero_mesa` (`numero_mesa`),
   ADD KEY `status_mesa` (`status_mesa`);
 
 --
@@ -309,6 +340,12 @@ ALTER TABLE `tb_telefones`
   ADD KEY `fk_funcionario` (`fk_funcionario`);
 
 --
+-- Indexes for table `tb_user`
+--
+ALTER TABLE `tb_user`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -316,7 +353,7 @@ ALTER TABLE `tb_telefones`
 -- AUTO_INCREMENT for table `tb_bebidas`
 --
 ALTER TABLE `tb_bebidas`
-  MODIFY `id_bebida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bebida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT for table `tb_cargos`
 --
@@ -326,17 +363,12 @@ ALTER TABLE `tb_cargos`
 -- AUTO_INCREMENT for table `tb_clientes`
 --
 ALTER TABLE `tb_clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tb_estados`
---
-ALTER TABLE `tb_estados`
-  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tb_funcionarios`
 --
 ALTER TABLE `tb_funcionarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=905;
 --
 -- AUTO_INCREMENT for table `tb_itens`
 --
@@ -346,7 +378,7 @@ ALTER TABLE `tb_itens`
 -- AUTO_INCREMENT for table `tb_mesas`
 --
 ALTER TABLE `tb_mesas`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_pedidos`
 --
@@ -356,7 +388,17 @@ ALTER TABLE `tb_pedidos`
 -- AUTO_INCREMENT for table `tb_pratos`
 --
 ALTER TABLE `tb_pratos`
-  MODIFY `id_prato` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_prato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tb_telefones`
+--
+ALTER TABLE `tb_telefones`
+  MODIFY `id_telefone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tb_user`
+--
+ALTER TABLE `tb_user`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --

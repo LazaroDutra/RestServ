@@ -34,13 +34,13 @@ $conn = conectar();
                 $cod_prato += $result ['id_prato'];
             }
             ?>
-          <form action="m_prato.php" method="post">
+          <form action="CRUD_prato.php" method="post">
 
             <label>Código do Prato</label>
             <input type="text" name="cod_prato" class="form-control" value="<?php print $cod_prato ?>" placeholder="Código do Prato" disabled/>
 
             <label>Nome do Prato</label>
-            <input type="text" name="nome_prato" class="form-control" value="" placeholder="Nome do Prato" required/>
+            <input type="text" name="nome_prato" class="form-control" placeholder="Nome do Prato" required/>
 
             <label>Descrição do Prato</label>
             <textarea class="form-control" name="des_prato" rows="3" placeholder="Descrição do Prato" required></textarea>
@@ -53,12 +53,11 @@ $conn = conectar();
 
             <input type="hidden" name="tipo" value="add">
             <div class="text-center">
-                <a href="../index.php">
-                    <button type="button" name="btn_cancelar" class="btn btn-danger">Cancelar</button>
-                </a>
-                <input type="submit" name="ok" class="btn btn-success"value="Concluir"/>
+              <a href="/www/RestServ/pages">
+                <button type="button" name="btn_cancelar" class="btn btn-danger">Cancelar</button>
+              </a>
+              <button type="submit" class="btn btn-success" name="tipo" value="add">Concluir</button>
             </div>
-
             </br>
           </form>
       </div>
